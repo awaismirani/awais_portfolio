@@ -10,17 +10,20 @@
     <!-- Google Fonts: Space Grotesk for Cyber Headings, Plus Jakarta Sans for Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* CSS resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* Custom futuristic cursor */
+            cursor: none;
+            /* Custom futuristic cursor */
         }
 
         :root {
@@ -36,6 +39,11 @@
             --glow-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
         }
 
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-primary);
@@ -45,12 +53,12 @@
             max-width: 100%;
         }
 
-        /* 🌌 Persistent Cyber Viewport Frame */
+        /* 🌌 Persistent Cyber Viewport Frame — border removed so bg fills edge-to-edge */
         .cyber-frame {
             position: fixed;
             inset: 0;
-            border: 12px solid var(--frame-bg);
-            box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.15), 0 0 25px rgba(0, 240, 255, 0.2);
+            border: none;
+            box-shadow: inset 0 0 40px rgba(0, 240, 255, 0.08);
             pointer-events: none;
             z-index: 9999;
         }
@@ -59,9 +67,9 @@
         .grid-overlay {
             position: fixed;
             inset: 0;
-            background-image: 
-              linear-gradient(rgba(0, 240, 255, 0.015) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
             background-size: 45px 45px;
             pointer-events: none;
             z-index: -1;
@@ -104,15 +112,24 @@
         }
 
         @media (hover: none) and (pointer: coarse) {
-            .cursor-dot, .cursor-outline { display: none !important; }
-            * { cursor: auto !important; }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none !important;
+            }
+
+            * {
+                cursor: auto !important;
+            }
         }
 
         /* Container & Layout */
         .container {
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 4rem;
+            box-sizing: border-box;
         }
 
         section {
@@ -142,6 +159,8 @@
             letter-spacing: -0.02em;
             text-transform: uppercase;
             line-height: 1.1;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .text-outline {
@@ -153,9 +172,9 @@
         /* Nav Bar Styling */
         nav {
             position: fixed;
-            top: 12px;
-            left: 12px;
-            right: 12px;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 70px;
             z-index: 1000;
             background: rgba(5, 6, 9, 0.7);
@@ -350,9 +369,20 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.6); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 240, 255, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.6);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 8px rgba(0, 240, 255, 0);
+            }
+
+            100% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+            }
         }
 
         .hero-text h1 {
@@ -362,6 +392,8 @@
             margin-bottom: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Role Typwriter */
@@ -381,8 +413,13 @@
         }
 
         @keyframes blink-cursor {
-            from { opacity: 1; }
-            to { opacity: 0; }
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
         }
 
         .hero-text p {
@@ -413,7 +450,8 @@
             width: 100%;
             aspect-ratio: 4 / 5;
             border-radius: 24px;
-            overflow: hidden;         /* clip only the image, NOT the floating tags */
+            overflow: hidden;
+            /* clip only the image, NOT the floating tags */
             border: 1px solid rgba(0, 240, 255, 0.18);
             background: rgba(10, 11, 16, 0.4);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
@@ -441,10 +479,34 @@
             z-index: 10;
             pointer-events: none;
         }
-        .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-        .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-        .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-        .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        .top-left {
+            top: 12px;
+            left: 12px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 12px;
+            right: 12px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 12px;
+            left: 12px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            bottom: 12px;
+            right: 12px;
+            border-left: none;
+            border-top: none;
+        }
 
         .viewfinder-meta {
             position: absolute;
@@ -478,8 +540,13 @@
         }
 
         @keyframes blink {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
+            from {
+                opacity: 0.3;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .viewfinder-bottom {
@@ -517,14 +584,38 @@
         }
 
         /* Tags positioned relative to .viewfinder-outer so they sit outside the clipped container */
-        .tag-1 { top: 28%; left: 0px; animation-delay: 0s; }
-        .tag-2 { top: 55%; right: 0px; animation-delay: 1.2s; }
-        .tag-3 { bottom: 12%; left: 6%; animation-delay: 2.2s; }
-        .tag-4 { top: 10%; right: 6%; animation-delay: 0.6s; }
+        .tag-1 {
+            top: 28%;
+            left: 0px;
+            animation-delay: 0s;
+        }
+
+        .tag-2 {
+            top: 55%;
+            right: 0px;
+            animation-delay: 1.2s;
+        }
+
+        .tag-3 {
+            bottom: 12%;
+            left: 6%;
+            animation-delay: 2.2s;
+        }
+
+        .tag-4 {
+            top: 10%;
+            right: 6%;
+            animation-delay: 0.6s;
+        }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-8px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-8px);
+            }
         }
 
         /* About Section (The Story / Behind the Code) */
@@ -681,7 +772,8 @@
             height: 100%;
             background: var(--gradient-main);
             border-radius: 10px;
-            width: 0; /* Dynamic loading via ScrollTrigger */
+            width: 0;
+            /* Dynamic loading via ScrollTrigger */
             transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -1364,9 +1456,9 @@
             text-align: center;
             padding: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
-            margin: 0 12px 12px 12px;
+            margin: 0;
             background: #030407;
-            border-radius: 0 0 12px 12px;
+            border-radius: 0;
         }
 
         footer p {
@@ -1378,17 +1470,31 @@
 
         /* 📱 Responsive Mobile Adjustments */
         @media (max-width: 950px) {
-            .cyber-frame { border-width: 8px; }
-            nav { top: 8px; left: 8px; right: 8px; }
-            .container { padding: 0 2rem; }
 
-            .hero { padding-top: 120px; }
+            /* Frame border already none — no override needed */
+            nav {
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding-top: 90px;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 3rem;
             }
-            .hero-btns { justify-content: center; }
+
+            .hero-btns {
+                justify-content: center;
+            }
 
             .about-grid,
             .academics-grid,
@@ -1397,14 +1503,21 @@
                 gap: 2.5rem;
             }
 
-            .timeline::before { left: 24px; }
+            .timeline::before {
+                left: 24px;
+            }
+
             .timeline-item,
             .timeline-item:nth-child(even) {
                 padding-left: 54px;
                 padding-right: 0;
                 justify-content: flex-start;
             }
-            .timeline-dot { left: 24px; }
+
+            .timeline-dot {
+                left: 24px;
+            }
+
             .timeline-item:nth-child(odd) .timeline-content,
             .timeline-item:nth-child(even) .timeline-content {
                 margin-left: 0;
@@ -1412,20 +1525,23 @@
                 width: 100%;
             }
 
-            .menu-toggle-btn { display: flex; }
+            .menu-toggle-btn {
+                display: flex;
+            }
+
             .nav-links {
                 display: flex;
                 flex-direction: column;
                 position: fixed;
-                top: 82px;
-                left: 12px;
-                right: 12px;
+                top: 70px;
+                left: 0;
+                right: 0;
                 background: rgba(5, 6, 9, 0.98);
                 backdrop-filter: blur(25px);
                 padding: 2.2rem;
                 gap: 1.6rem;
                 border: 1px solid var(--card-border);
-                border-radius: 20px;
+                border-radius: 0 0 20px 20px;
                 transform: translateY(-160%);
                 opacity: 0;
                 transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
@@ -1433,22 +1549,83 @@
                 z-index: 999;
                 text-align: center;
             }
+
             .nav-links.open {
                 transform: translateY(0);
                 opacity: 1;
                 pointer-events: auto;
             }
+
+            /* Prevent floating tags overflowing on mobile */
+            .viewfinder-outer {
+                padding: 0 16px;
+            }
         }
 
         @media (max-width: 480px) {
-            .section-title { font-size: 2.2rem; margin-bottom: 2rem; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text p { font-size: 0.95rem; }
-            .btn { width: 100%; }
-            .hero-btns { flex-direction: column; gap: 0.8rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr !important; }
-            .about-grid, .academics-grid, .contact-grid { gap: 2rem; }
+            .section-title {
+                font-size: 1.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-text p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .about-grid,
+            .academics-grid,
+            .contact-grid {
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            /* Keep floating tags contained */
+            .viewfinder-outer {
+                padding: 0 10px;
+            }
+
+            .floating-tag {
+                font-size: 0.68rem;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .container {
+                padding: 0 0.8rem;
+            }
         }
     </style>
 </head>
@@ -1497,7 +1674,9 @@
                 <h3>
                     <span class="typewriter-role"></span><span class="typewriter-cursor">|</span>
                 </h3>
-                <p>Architecting high-performance cross-platform mobile systems used by 100K+ users worldwide. Specializing in Clean Architecture, state persistence layers, optimized rendering pipelines, and state-of-the-art LLM integrations.</p>
+                <p>Architecting high-performance cross-platform mobile systems used by 100K+ users worldwide.
+                    Specializing in Clean Architecture, state persistence layers, optimized rendering pipelines, and
+                    state-of-the-art LLM integrations.</p>
                 <div class="hero-btns">
                     <a href="#contact" class="btn btn-primary">Hire Me <i class="fas fa-arrow-right"></i></a>
                     <a href="#" class="btn btn-outline" id="resumeBtn">Download CV <i class="fas fa-file-alt"></i></a>
@@ -1554,11 +1733,17 @@
         <div class="container">
             <span class="section-tag">// Behind The Code</span>
             <h2 class="section-title">The Story <span class="text-outline">Behind The Code</span></h2>
-            
+
             <div class="about-grid">
                 <div class="story-box">
-                    <p style="margin-bottom: 1.2rem;">I am a highly passionate <strong>Senior Flutter Developer</strong> with <strong>4+ years of professional engineering experience</strong>. My journey revolves around designing scalable, production-grade mobile codebases that maintain a <strong>99.9% crash-free session rate</strong>.</p>
-                    <p>I focus heavily on bridging high-fidelity visual UI designs with stable, testable backends. Whether implementing clean Domain-Driven patterns, offloading calculations with background thread Isolates, or deploying AI integrations, I thrive on writing elegant solutions to complex puzzles.</p>
+                    <p style="margin-bottom: 1.2rem;">I am a highly passionate <strong>Senior Flutter Developer</strong>
+                        with <strong>4+ years of professional engineering experience</strong>. My journey revolves
+                        around designing scalable, production-grade mobile codebases that maintain a <strong>99.9%
+                            crash-free session rate</strong>.</p>
+                    <p>I focus heavily on bridging high-fidelity visual UI designs with stable, testable backends.
+                        Whether implementing clean Domain-Driven patterns, offloading calculations with background
+                        thread Isolates, or deploying AI integrations, I thrive on writing elegant solutions to complex
+                        puzzles.</p>
                 </div>
                 <div class="stats-grid">
                     <!-- Stat 1 -->
@@ -1595,7 +1780,7 @@
         <div class="container">
             <span class="section-tag">// Stack &amp; Tools</span>
             <h2 class="section-title">Skills &amp; <span class="text-outline">Expertise</span></h2>
-            
+
             <div class="skills-grid">
                 <!-- Group 1: Frontend -->
                 <div class="skill-group-card">
@@ -1606,15 +1791,21 @@
                     <div class="skill-progress-list">
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Flutter SDK</span><span>95%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="95%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Dart Language</span><span>95%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="95%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Native Android / iOS</span><span>75%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="75%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="75%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1628,15 +1819,21 @@
                     <div class="skill-progress-list">
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Clean Architecture</span><span>90%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="90%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>BLoC Pattern</span><span>88%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="88%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="88%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>GetX State Mgmt</span><span>92%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="92%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="92%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1650,15 +1847,21 @@
                     <div class="skill-progress-list">
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Firebase Services</span><span>90%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="90%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Supabase BaaS</span><span>85%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="85%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>REST APIs &amp; MySQL</span><span>90%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="90%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1672,15 +1875,21 @@
                     <div class="skill-progress-list">
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>AI &amp; LLM Integrations</span><span>85%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="85%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Git Version Control</span><span>95%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="95%"></div>
+                            </div>
                         </div>
                         <div class="skill-progress-item">
                             <div class="skill-name-percent"><span>Figma UI/UX Design</span><span>80%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="80%"></div></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="80%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1693,7 +1902,7 @@
         <div class="container">
             <span class="section-tag">// Showcased Apps</span>
             <h2 class="section-title">My Featured <span class="text-outline">Work</span></h2>
-            
+
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">all</button>
                 <button class="filter-btn" data-filter="utility">utility</button>
@@ -1708,7 +1917,8 @@
                 <div class="phone-mockup" data-category="utility">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/IAWTHeDB-VIcSfEhGTG4AI39ph8sCILqVsFd65v04wJwV39izULvkb3kecBHTpOQQZZIO258SqwdEXR0DYSMRjA" alt="GetinDevice">
+                        <img src="https://play-lh.googleusercontent.com/IAWTHeDB-VIcSfEhGTG4AI39ph8sCILqVsFd65v04wJwV39izULvkb3kecBHTpOQQZZIO258SqwdEXR0DYSMRjA"
+                            alt="GetinDevice">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1717,10 +1927,13 @@
                                 <span class="phone-tag">Utility</span>
                                 <span class="phone-tag">100K+ Installs</span>
                             </div>
-                            <p>Premium video and media downloader system featuring dynamic API parsing and fast integrated multi-thread download management.</p>
+                            <p>Premium video and media downloader system featuring dynamic API parsing and fast
+                                integrated multi-thread download management.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.layyahdevs.getindevice" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.layyahdevs.getindevice"
+                                target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play
+                                Store</a>
                         </div>
                     </div>
                 </div>
@@ -1729,7 +1942,8 @@
                 <div class="phone-mockup" data-category="services">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/I_zIjdlPppVWO_5a2TSEGx-o8kv0StZVH_klkZIVVEsMtR1oR0rqJQXk72yf0PcOUFU" alt="Tamam Customer">
+                        <img src="https://play-lh.googleusercontent.com/I_zIjdlPppVWO_5a2TSEGx-o8kv0StZVH_klkZIVVEsMtR1oR0rqJQXk72yf0PcOUFU"
+                            alt="Tamam Customer">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1738,11 +1952,14 @@
                                 <span class="phone-tag">Services</span>
                                 <span class="phone-tag">Marketplace</span>
                             </div>
-                            <p>On-demand home services booking ecosystem. Integrated live map provider tracking, payment gateways, and real-time chat.</p>
+                            <p>On-demand home services booking ecosystem. Integrated live map provider tracking, payment
+                                gateways, and real-time chat.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.tamam.customer" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/us/app/tamam-services-on-demand/id6740270481" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.tamam.customer" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/tamam-services-on-demand/id6740270481"
+                                target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1751,7 +1968,8 @@
                 <div class="phone-mockup" data-category="vendor">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/kikeK652BASCUv-I0v3WKFquLbCcU_1gT__MYmj83f0p6I1YHXQOYOfeNtZPnM5n8A" alt="Tamam Vendor">
+                        <img src="https://play-lh.googleusercontent.com/kikeK652BASCUv-I0v3WKFquLbCcU_1gT__MYmj83f0p6I1YHXQOYOfeNtZPnM5n8A"
+                            alt="Tamam Vendor">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1760,11 +1978,14 @@
                                 <span class="phone-tag">Vendor</span>
                                 <span class="phone-tag">Provider Panel</span>
                             </div>
-                            <p>Vendor administration control dashboard for providers to manage schedules, track incoming orders, and review earnings.</p>
+                            <p>Vendor administration control dashboard for providers to manage schedules, track incoming
+                                orders, and review earnings.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.tamam.vendor" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/us/app/tamam-vendor/id6740737001" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.tamam.vendor" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/tamam-vendor/id6740737001" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1773,7 +1994,8 @@
                 <div class="phone-mockup" data-category="health">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/z9TsNJ7KSG3Fj1-asqilMbl6wLVnXKP0545VwwKFM1nFH0UoRhso6EDtf-_7i7sbHsEPKlYA-ocvAU9XddqrUg" alt="DocDoc">
+                        <img src="https://play-lh.googleusercontent.com/z9TsNJ7KSG3Fj1-asqilMbl6wLVnXKP0545VwwKFM1nFH0UoRhso6EDtf-_7i7sbHsEPKlYA-ocvAU9XddqrUg"
+                            alt="DocDoc">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1782,11 +2004,14 @@
                                 <span class="phone-tag">Health</span>
                                 <span class="phone-tag">Patient Booking</span>
                             </div>
-                            <p>Advanced dental healthcare app providing doctor searching, digital treatment appointment booking, and historic e-medical record reviews.</p>
+                            <p>Advanced dental healthcare app providing doctor searching, digital treatment appointment
+                                booking, and historic e-medical record reviews.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.customer" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/us/app/docdoc-dental-care/id6743958550" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.customer" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/docdoc-dental-care/id6743958550" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1795,7 +2020,8 @@
                 <div class="phone-mockup" data-category="vendor">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/bi8_LfG1QfUt-wvj-NpSI283qSlIjXmq8Sx8aZLaL1n61OUHdiQz9lBX4Bi7O0DDKumcgsvxDrT6PqbsgVyY" alt="DocDoc Partner">
+                        <img src="https://play-lh.googleusercontent.com/bi8_LfG1QfUt-wvj-NpSI283qSlIjXmq8Sx8aZLaL1n61OUHdiQz9lBX4Bi7O0DDKumcgsvxDrT6PqbsgVyY"
+                            alt="DocDoc Partner">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1804,11 +2030,14 @@
                                 <span class="phone-tag">Clinic Panel</span>
                                 <span class="phone-tag">Vendor</span>
                             </div>
-                            <p>Clinician schedule manager panel for dentists allowing secure patient query approvals, chat, and database tracking.</p>
+                            <p>Clinician schedule manager panel for dentists allowing secure patient query approvals,
+                                chat, and database tracking.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.vendor" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/us/app/docdoc-partner/id6744539826" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.vendor" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/docdoc-partner/id6744539826" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1817,7 +2046,8 @@
                 <div class="phone-mockup" data-category="utility">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/lDITcQfA9M2qQ2exs8NZDWlMtJv7J7Ekcn_6VclNh0iP2OnfwYJWxWUTzqQmE7lNGu0" alt="Logi">
+                        <img src="https://play-lh.googleusercontent.com/lDITcQfA9M2qQ2exs8NZDWlMtJv7J7Ekcn_6VclNh0iP2OnfwYJWxWUTzqQmE7lNGu0"
+                            alt="Logi">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1826,11 +2056,14 @@
                                 <span class="phone-tag">Utility</span>
                                 <span class="phone-tag">Logistics</span>
                             </div>
-                            <p>On-demand courier delivery platform. Incorporates advanced live driver tracking, Mapbox routes, and automated status channels.</p>
+                            <p>On-demand courier delivery platform. Incorporates advanced live driver tracking, Mapbox
+                                routes, and automated status channels.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.logicorp" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/us/app/logi-deliver-with-a-tap/id6478827419" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.logicorp" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/logi-deliver-with-a-tap/id6478827419" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1839,7 +2072,8 @@
                 <div class="phone-mockup" data-category="social">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/pvhTrgDwKyu5V81_YAmeBoGAKPqInRyDBUnYwyPeIaxyVwSffpXIDlHUW6VDtOJQJQ" alt="Blaxity">
+                        <img src="https://play-lh.googleusercontent.com/pvhTrgDwKyu5V81_YAmeBoGAKPqInRyDBUnYwyPeIaxyVwSffpXIDlHUW6VDtOJQJQ"
+                            alt="Blaxity">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1848,11 +2082,14 @@
                                 <span class="phone-tag">Social</span>
                                 <span class="phone-tag">Couples</span>
                             </div>
-                            <p>A sophisticated social matching and couples discovery application designed with custom matchmaking indexes and secure local DB caching.</p>
+                            <p>A sophisticated social matching and couples discovery application designed with custom
+                                matchmaking indexes and secure local DB caching.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.appp.blaxity" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
-                            <a href="https://apps.apple.com/app/blaxity-dating-meet-couples/id1485603417" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.appp.blaxity" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/app/blaxity-dating-meet-couples/id1485603417"
+                                target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
                         </div>
                     </div>
                 </div>
@@ -1861,7 +2098,8 @@
                 <div class="phone-mockup" data-category="utility">
                     <div class="phone-island"></div>
                     <div class="phone-screen">
-                        <img src="https://play-lh.googleusercontent.com/8Ybg9GSDD2Gvibfy16MndTqqp7nt9irpBQpVkcOOJN997T3Z9D4LcOrW0te2GDpA7c0" alt="Hooray">
+                        <img src="https://play-lh.googleusercontent.com/8Ybg9GSDD2Gvibfy16MndTqqp7nt9irpBQpVkcOOJN997T3Z9D4LcOrW0te2GDpA7c0"
+                            alt="Hooray">
                     </div>
                     <div class="phone-content">
                         <div>
@@ -1870,10 +2108,12 @@
                                 <span class="phone-tag">Utility</span>
                                 <span class="phone-tag">Gamified</span>
                             </div>
-                            <p>Gamified local engagement and customer loyalty portal featuring rotating prize wheels, raffle codes, and dynamic reward mechanics.</p>
+                            <p>Gamified local engagement and customer loyalty portal featuring rotating prize wheels,
+                                raffle codes, and dynamic reward mechanics.</p>
                         </div>
                         <div class="phone-actions">
-                            <a href="https://play.google.com/store/apps/details?id=com.codergize.hooray" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.codergize.hooray" target="_blank"
+                                class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
                         </div>
                     </div>
                 </div>
@@ -1886,13 +2126,14 @@
         <div class="container">
             <span class="section-tag">// Client Testimonials</span>
             <h2 class="section-title">Client <span class="text-outline">Reviews</span></h2>
-            
+
             <div class="reviews-grid">
                 <!-- Review 1 -->
                 <div class="review-card">
                     <div>
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="review-text">"Excellent experience working with this seller. Understood requirements perfectly and delivered a flawless product ahead of time!"</p>
+                        <p class="review-text">"Excellent experience working with this seller. Understood requirements
+                            perfectly and delivered a flawless product ahead of time!"</p>
                     </div>
                     <div class="reviewer-info">
                         <div class="reviewer-avatar">AS</div>
@@ -1901,7 +2142,8 @@
                             <span>Verified Buyer — Pakistan</span>
                         </div>
                         <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -1910,7 +2152,8 @@
                 <div class="review-card">
                     <div>
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="review-text">"I recently hired this seller to develop a webview app... Very highly recommended! Top-tier communication and technical skills."</p>
+                        <p class="review-text">"I recently hired this seller to develop a webview app... Very highly
+                            recommended! Top-tier communication and technical skills."</p>
                     </div>
                     <div class="reviewer-info">
                         <div class="reviewer-avatar">AS</div>
@@ -1919,7 +2162,8 @@
                             <span>Verified Buyer — Pakistan</span>
                         </div>
                         <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -1928,7 +2172,8 @@
                 <div class="review-card">
                     <div>
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="review-text">"Thanks man, great skills I will be back for more projects. Clean code, fast delivery, and very professional behavior."</p>
+                        <p class="review-text">"Thanks man, great skills I will be back for more projects. Clean code,
+                            fast delivery, and very professional behavior."</p>
                     </div>
                     <div class="reviewer-info">
                         <div class="reviewer-avatar">AG</div>
@@ -1937,14 +2182,16 @@
                             <span>Verified Buyer — Vietnam</span>
                         </div>
                         <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin-top: 3.5rem;">
-                <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="btn btn-outline">View More Reviews on Fiverr <i class="fas fa-external-link-alt" style="margin-left: 0.5rem;"></i></a>
+                <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="btn btn-outline">View More Reviews
+                    on Fiverr <i class="fas fa-external-link-alt" style="margin-left: 0.5rem;"></i></a>
             </div>
         </div>
     </section>
@@ -1954,7 +2201,7 @@
         <div class="container">
             <span class="section-tag">// FAQ Index</span>
             <h2 class="section-title">Frequently Asked <span class="text-outline">Questions</span></h2>
-            
+
             <div class="faq-container">
                 <!-- Q1 -->
                 <div class="faq-item">
@@ -1963,7 +2210,10 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>By adhering to rigorous production standards: clean architecture layer separations, reactive state handlers (GetX/Bloc) that automatically tear down resources, defensive programming with Null Safety, and integrating continuous crash monitoring (Firebase Crashlytics & Sentry) to trace and patch any anomalies immediately before they impact production.</p>
+                        <p>By adhering to rigorous production standards: clean architecture layer separations, reactive
+                            state handlers (GetX/Bloc) that automatically tear down resources, defensive programming
+                            with Null Safety, and integrating continuous crash monitoring (Firebase Crashlytics &
+                            Sentry) to trace and patch any anomalies immediately before they impact production.</p>
                     </div>
                 </div>
                 <!-- Q2 -->
@@ -1973,7 +2223,11 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes, absolutely! I specialize in full-scale app migrations. My process involves analyzing your existing app's feature matrix, reconstructing the visual designs into reusable Flutter widgets, establishing local databases (Hive/Sqflite), and writing custom Platform Channels (Kotlin/Swift) to bind with any native hardware features if necessary, ensuring a smooth transition without losing user data.</p>
+                        <p>Yes, absolutely! I specialize in full-scale app migrations. My process involves analyzing
+                            your existing app's feature matrix, reconstructing the visual designs into reusable Flutter
+                            widgets, establishing local databases (Hive/Sqflite), and writing custom Platform Channels
+                            (Kotlin/Swift) to bind with any native hardware features if necessary, ensuring a smooth
+                            transition without losing user data.</p>
                     </div>
                 </div>
                 <!-- Q3 -->
@@ -1983,7 +2237,11 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>I focus on three key pillars: render efficiency (const constructors, removing redundant rebuild cycles, lazy loading list items), memory tracking (eliminating memory leaks by closing controllers/streams, optimizing high-resolution assets), and background isolate offloading (running complex JSON parsing and heavy calculations outside the main UI thread to guarantee 60/120fps operations).</p>
+                        <p>I focus on three key pillars: render efficiency (const constructors, removing redundant
+                            rebuild cycles, lazy loading list items), memory tracking (eliminating memory leaks by
+                            closing controllers/streams, optimizing high-resolution assets), and background isolate
+                            offloading (running complex JSON parsing and heavy calculations outside the main UI thread
+                            to guarantee 60/120fps operations).</p>
                     </div>
                 </div>
                 <!-- Q4 -->
@@ -1993,7 +2251,10 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Transparency is my priority. We will use tools like Slack/Discord for daily touchpoints, Trello/Jira for sprint boards, and Figma for design collaboration. I push code to GitHub regularly and provide weekly, fully interactive TestFlight and Google Play Console Internal Test builds so you can test features physically on real devices at every stage.</p>
+                        <p>Transparency is my priority. We will use tools like Slack/Discord for daily touchpoints,
+                            Trello/Jira for sprint boards, and Figma for design collaboration. I push code to GitHub
+                            regularly and provide weekly, fully interactive TestFlight and Google Play Console Internal
+                            Test builds so you can test features physically on real devices at every stage.</p>
                     </div>
                 </div>
                 <!-- Q5 -->
@@ -2003,7 +2264,10 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes. Intellectual property security is crucial for all start-ups and enterprise systems. I will gladly sign a comprehensive Non-Disclosure Agreement before discussing any architecture plans, proprietary API keys, or custom database models to keep your intellectual assets fully protected.</p>
+                        <p>Yes. Intellectual property security is crucial for all start-ups and enterprise systems. I
+                            will gladly sign a comprehensive Non-Disclosure Agreement before discussing any architecture
+                            plans, proprietary API keys, or custom database models to keep your intellectual assets
+                            fully protected.</p>
                     </div>
                 </div>
             </div>
@@ -2015,7 +2279,7 @@
         <div class="container">
             <span class="section-tag">// Professional Milestones</span>
             <h2 class="section-title">Work <span class="text-outline">Journey</span></h2>
-            
+
             <div class="timeline">
                 <!-- Node 1 -->
                 <div class="timeline-item">
@@ -2024,7 +2288,9 @@
                         <span class="timeline-date-badge">2024 - Present</span>
                         <h3 class="timeline-title">Senior Software Engineer</h3>
                         <div class="timeline-company">CoderGize — Lebanon (Remote)</div>
-                        <p>Leading Flutter architecture for global apps. Custom persistent layers, continuous integration (CI/CD), frame optimization, and scaling apps to handle thousands of concurrent transactions.</p>
+                        <p>Leading Flutter architecture for global apps. Custom persistent layers, continuous
+                            integration (CI/CD), frame optimization, and scaling apps to handle thousands of concurrent
+                            transactions.</p>
                     </div>
                 </div>
                 <!-- Node 2 -->
@@ -2034,7 +2300,8 @@
                         <span class="timeline-date-badge">2022 - 2023</span>
                         <h3 class="timeline-title">Flutter Mobile Developer</h3>
                         <div class="timeline-company">Skyline Coderz — Pakistan (Hybrid)</div>
-                        <p>Shipped 10+ scalable cross-platform apps directly to the Google Play Store and iOS App Store. Expert RESTful API bindings, payment gateway integration, and Firebase setup.</p>
+                        <p>Shipped 10+ scalable cross-platform apps directly to the Google Play Store and iOS App Store.
+                            Expert RESTful API bindings, payment gateway integration, and Firebase setup.</p>
                     </div>
                 </div>
                 <!-- Node 3 -->
@@ -2044,7 +2311,8 @@
                         <span class="timeline-date-badge">2021 - 2022</span>
                         <h3 class="timeline-title">Flutter Developer</h3>
                         <div class="timeline-company">MicroProgrammers — Onsite</div>
-                        <p>Began my specialized Dart journey coding reusable widget libraries, implementing local databases (Sqflite), and managing simple REST request layouts.</p>
+                        <p>Began my specialized Dart journey coding reusable widget libraries, implementing local
+                            databases (Sqflite), and managing simple REST request layouts.</p>
                     </div>
                 </div>
             </div>
@@ -2058,15 +2326,17 @@
                 <!-- Academic Card -->
                 <div class="academic-card">
                     <span class="section-tag" style="text-align: left;">// Academics</span>
-                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Academic <span class="text-outline">Background</span></h2>
-                    
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Academic <span
+                            class="text-outline">Background</span></h2>
+
                     <div class="edu-item">
                         <div class="edu-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <div class="edu-details">
                             <h4>Associate Degree Program (ADP)</h4>
                             <div class="edu-school">Computer Science | Layyah Pakistan</div>
-                            <div class="edu-gpa">GPA: 3.2 / 4.0</div>
-                            <p>Specialized courses in Data Structures, OOP, Database Management Systems, and Object-Oriented Analysis.</p>
+                            <div class="edu-gpa">GPA: 3.6 / 4.0</div>
+                            <p>Specialized courses in Data Structures, OOP, Database Management Systems, and
+                                Object-Oriented Analysis.</p>
                         </div>
                     </div>
                 </div>
@@ -2074,8 +2344,9 @@
                 <!-- Languages Tracker card -->
                 <div class="academic-card">
                     <span class="section-tag" style="text-align: left;">// Linguistic Skills</span>
-                    <h2 class="section-title" style="text-align: left; margin-bottom: 2.5rem;">Languages <span class="text-outline">Proficiency</span></h2>
-                    
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2.5rem;">Languages <span
+                            class="text-outline">Proficiency</span></h2>
+
                     <div class="language-list">
                         <!-- Lang 1 -->
                         <div class="language-item">
@@ -2121,13 +2392,16 @@
         <div class="container">
             <span class="section-tag">// Hire Me</span>
             <h2 class="section-title">Let's Create <span class="text-outline">Something Epic</span></h2>
-            
+
             <div class="contact-grid">
                 <!-- Info details -->
                 <div class="contact-info-list">
-                    <h3 style="font-family:'Space Grotesk', sans-serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 0.5rem;">Got a vision?<br>Let's map the architecture.</h3>
-                    <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Feel free to reach out directly. I am active and available for freelance, contract, or full-time roles.</p>
-                    
+                    <h3
+                        style="font-family:'Space Grotesk', sans-serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 0.5rem;">
+                        Got a vision?<br>Let's map the architecture.</h3>
+                    <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Feel free to reach out directly. I am
+                        active and available for freelance, contract, or full-time roles.</p>
+
                     <a href="mailto:awais.mirani148@gmail.com" class="contact-card-item">
                         <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-card-details">
@@ -2135,7 +2409,7 @@
                             <p>awais.mirani148@gmail.com</p>
                         </div>
                     </a>
-                    
+
                     <a href="tel:+923084316822" class="contact-card-item">
                         <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
                         <div class="contact-card-details">
@@ -2143,7 +2417,7 @@
                             <p>+92 308 431 6822</p>
                         </div>
                     </a>
-                    
+
                     <div class="contact-card-item" style="cursor: default;">
                         <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="contact-card-details">
@@ -2154,9 +2428,12 @@
 
                     <!-- Social row -->
                     <div class="social-row">
-                        <a href="https://linkedin.com/in/muhammad-awais-b11645286" target="_blank" class="social-cyber-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                        <a href="https://github.com/awaismirani" target="_blank" class="social-cyber-btn"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="social-cyber-btn"><i class="fas fa-star"></i> Fiverr</a>
+                        <a href="https://linkedin.com/in/muhammad-awais-b11645286" target="_blank"
+                            class="social-cyber-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="https://github.com/awaismirani" target="_blank" class="social-cyber-btn"><i
+                                class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="social-cyber-btn"><i
+                                class="fas fa-star"></i> Fiverr</a>
                     </div>
                 </div>
 
@@ -2167,14 +2444,19 @@
                             <input type="text" name="name" class="form-control" placeholder="YOUR FULL NAME" required>
                         </div>
                         <div class="form-group" style="margin-bottom: 1.2rem;">
-                            <input type="email" name="email" class="form-control" placeholder="YOUR EMAIL ADDRESS" required>
+                            <input type="email" name="email" class="form-control" placeholder="YOUR EMAIL ADDRESS"
+                                required>
                         </div>
                         <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <textarea name="message" class="form-control" placeholder="YOUR PROJECT DETAILS AND VISION..." rows="5" required></textarea>
+                            <textarea name="message" class="form-control"
+                                placeholder="YOUR PROJECT DETAILS AND VISION..." rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; border-radius: 14px;">Send Message <i class="fas fa-paper-plane" style="margin-left:0.4rem;"></i></button>
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; padding: 1.1rem; border-radius: 14px;">Send Message <i
+                                class="fas fa-paper-plane" style="margin-left:0.4rem;"></i></button>
                         <div id="formSuccess" class="success-message">
-                            <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Message transmitted successfully! I will reply within 24h.
+                            <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Message transmitted
+                            successfully! I will reply within 24h.
                         </div>
                     </form>
                 </div>
@@ -2188,12 +2470,14 @@
     </footer>
 
     <!-- Back to top button -->
-    <a href="#home" class="back-to-top" id="backToTop" style="position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(5,6,9,0.85); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); text-decoration: none; z-index: 100; box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); opacity: 0; pointer-events: none; transition: all 0.3s;"><i class="fas fa-arrow-up"></i></a>
+    <a href="#home" class="back-to-top" id="backToTop"
+        style="position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(5,6,9,0.85); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); text-decoration: none; z-index: 100; box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); opacity: 0; pointer-events: none; transition: all 0.3s;"><i
+            class="fas fa-arrow-up"></i></a>
 
     <!-- Scripts: GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
+
     <script>
         // Custom Cursor Logic
         const dot = document.querySelector('.cursor-dot');
@@ -2202,7 +2486,7 @@
         window.addEventListener('mousemove', e => {
             dot.style.left = `${e.clientX}px`;
             dot.style.top = `${e.clientY}px`;
-            
+
             outline.animate({
                 left: `${e.clientX}px`,
                 top: `${e.clientY}px`
@@ -2373,9 +2657,9 @@
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 const filter = btn.getAttribute('data-filter');
-                
+
                 phoneItems.forEach(item => {
                     const matches = filter === 'all' || item.getAttribute('data-category') === filter;
                     if (matches) {
@@ -2471,7 +2755,7 @@
             const form = e.target;
             const btn = form.querySelector('button');
             const origText = btn.innerHTML;
-            
+
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TRANSMITTING...';
             btn.disabled = true;
 
@@ -2480,25 +2764,25 @@
                 body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             })
-            .then(res => res.json())
-            .then(data => {
-                btn.innerHTML = origText;
-                btn.disabled = false;
-                if (data.success === "true" || data.success === true) {
-                    form.reset();
-                    document.getElementById('formSuccess').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('formSuccess').style.display = 'none';
-                    }, 5000);
-                } else {
-                    alert('Error sending message. Please try again.');
-                }
-            })
-            .catch(() => {
-                btn.innerHTML = origText;
-                btn.disabled = false;
-                alert('Connection failure. Please check network.');
-            });
+                .then(res => res.json())
+                .then(data => {
+                    btn.innerHTML = origText;
+                    btn.disabled = false;
+                    if (data.success === "true" || data.success === true) {
+                        form.reset();
+                        document.getElementById('formSuccess').style.display = 'block';
+                        setTimeout(() => {
+                            document.getElementById('formSuccess').style.display = 'none';
+                        }, 5000);
+                    } else {
+                        alert('Error sending message. Please try again.');
+                    }
+                })
+                .catch(() => {
+                    btn.innerHTML = origText;
+                    btn.disabled = false;
+                    alert('Connection failure. Please check network.');
+                });
         });
 
         document.getElementById('resumeBtn').addEventListener('click', e => {
