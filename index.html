@@ -1,0 +1,2511 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Muhammad Awais | Senior Flutter Developer | Cyber Portfolio</title>
+    <meta name="description"
+        content="Senior Flutter Developer with 4+ years of experience, 100K+ downloads. Custom high-performance cyber-portfolio.">
+    <!-- Google Fonts: Space Grotesk for Cyber Headings, Plus Jakarta Sans for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom futuristic cursor */
+        }
+
+        :root {
+            --bg-dark: #050609;
+            --frame-bg: #0a0b10;
+            --card-bg: rgba(10, 11, 16, 0.6);
+            --card-border: rgba(0, 240, 255, 0.08);
+            --accent-cyan: #00f0ff;
+            --accent-purple: #7000ff;
+            --gradient-main: linear-gradient(135deg, #00f0ff, #7000ff);
+            --text-primary: #ffffff;
+            --text-muted: #94a3b8;
+            --glow-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* 🌌 Persistent Cyber Viewport Frame */
+        .cyber-frame {
+            position: fixed;
+            inset: 0;
+            border: 12px solid var(--frame-bg);
+            box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.15), 0 0 25px rgba(0, 240, 255, 0.2);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* 🌌 Futuristic Grid Overlay */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: 
+              linear-gradient(rgba(0, 240, 255, 0.015) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
+            background-size: 45px 45px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Background Particle Canvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.55;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--accent-cyan);
+            opacity: 0.6;
+            transition: width 0.15s, height 0.15s, transform 0.08s ease-out;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .cursor-dot, .cursor-outline { display: none !important; }
+            * { cursor: auto !important; }
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* 👾 Cyber typography & outlined titles */
+        .section-tag {
+            color: var(--accent-cyan);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--accent-cyan);
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+        }
+
+        /* Nav Bar Styling */
+        nav {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            height: 70px;
+            z-index: 1000;
+            background: rgba(5, 6, 9, 0.7);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.4s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+            text-shadow: var(--glow-shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.3rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: lowercase;
+        }
+
+        .nav-links a::after {
+            content: ' />';
+            color: var(--accent-cyan);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            opacity: 1;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .menu-toggle-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle-btn:hover {
+            background: var(--gradient-main);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Ambient glowing lights behind elements */
+        .ambient-glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        /* Buttons styling */
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 60px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--bg-dark);
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.25);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.45);
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Pulsing badge */
+        .pulse-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 40px;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            color: var(--accent-cyan);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.6); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 240, 255, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        }
+
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            line-height: 1.05;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Role Typwriter */
+        .hero-text h3 {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            min-height: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .typewriter-cursor {
+            color: var(--accent-cyan);
+            animation: blink-cursor 0.7s infinite alternate;
+        }
+
+        @keyframes blink-cursor {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .hero-text p {
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* 📸 Viewfinder Profile wrapper styling */
+        .viewfinder-outer {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            /* Extra horizontal padding so tags that stick out left/right are visible */
+            padding: 0 32px;
+        }
+
+        .viewfinder-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 24px;
+            overflow: hidden;         /* clip only the image, NOT the floating tags */
+            border: 1px solid rgba(0, 240, 255, 0.18);
+            background: rgba(10, 11, 16, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewfinder-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            object-fit: cover;
+            object-position: center top;
+            border: none;
+            filter: grayscale(10%) contrast(108%);
+        }
+
+        /* Cyber camera brackets */
+        .corner-bracket {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--accent-cyan);
+            z-index: 10;
+            pointer-events: none;
+        }
+        .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        .viewfinder-meta {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.68rem;
+            z-index: 10;
+        }
+
+        .rec-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #ff3366;
+            font-weight: 700;
+        }
+
+        .rec-dot {
+            width: 6px;
+            height: 6px;
+            background: #ff3366;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #ff3366;
+            animation: blink 0.8s infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        .viewfinder-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.68rem;
+            z-index: 10;
+        }
+
+        /* 🏷️ Floating Tech Tags */
+        .floating-tag {
+            position: absolute;
+            background: rgba(10, 11, 16, 0.85);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 12px;
+            padding: 8px 14px;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(8px);
+            z-index: 12;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: float 4s ease-in-out infinite alternate;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Tags positioned relative to .viewfinder-outer so they sit outside the clipped container */
+        .tag-1 { top: 28%; left: 0px; animation-delay: 0s; }
+        .tag-2 { top: 55%; right: 0px; animation-delay: 1.2s; }
+        .tag-3 { bottom: 12%; left: 6%; animation-delay: 2.2s; }
+        .tag-4 { top: 10%; right: 6%; animation-delay: 0.6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+
+        /* About Section (The Story / Behind the Code) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-size: 1.02rem;
+        }
+
+        .story-box strong {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.08);
+        }
+
+        .stat-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.3rem;
+            color: rgba(0, 240, 255, 0.25);
+            transition: color 0.3s;
+        }
+
+        .stat-card:hover .stat-icon {
+            color: var(--accent-cyan);
+            text-shadow: var(--glow-shadow);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Toolkit / Skills section progress tracks */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-group-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .skill-group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1rem;
+        }
+
+        .skill-group-header i {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            text-shadow: var(--glow-shadow);
+        }
+
+        .skill-group-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .skill-progress-item {
+            width: 100%;
+        }
+
+        .skill-name-percent {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 10px;
+            width: 0; /* Dynamic loading via ScrollTrigger */
+            transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 🛤️ glowing vertical timeline */
+        .timeline {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 25px;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: #ffffff;
+            box-shadow: 0 0 18px var(--accent-cyan), 0 0 35px var(--accent-purple);
+            transform: translateX(-50%) scale(1.3);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 2.2rem;
+            border-radius: 28px;
+            width: 85%;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 2rem;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .timeline-date-badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-company {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* 📱 Vertical Projects grid (smartphone shells) */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: rgba(0, 240, 255, 0.08);
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* 📱 Stunning smartphone device mockup wrapper */
+        .phone-mockup {
+            border: 9px solid #181a23;
+            border-radius: 36px;
+            background: #07090e;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            /* Removed fixed aspect-ratio so height is driven by content */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: #262936;
+            box-shadow: 0 25px 55px rgba(0, 240, 255, 0.12);
+        }
+
+        /* Phone notch/island */
+        .phone-island {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 14px;
+            background: #181a23;
+            border-radius: 10px;
+            z-index: 15;
+        }
+
+        /* Phone Screen Preview area */
+        .phone-screen {
+            position: relative;
+            height: 140px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.06), rgba(112, 0, 255, 0.06));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .phone-screen img {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Glass hover filter for screen */
+        .phone-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 240, 255, 0.08);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .phone-mockup:hover .phone-screen::after {
+            opacity: 1;
+        }
+
+        /* Info Inside phone mockups */
+        .phone-content {
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            /* No flex:1 so the card shrinks to content */
+            gap: 0.8rem;
+        }
+
+        .phone-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .phone-content p {
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .phone-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .phone-tag {
+            background: rgba(0, 240, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        .phone-actions {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .store-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 0.6rem 0.4rem;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.25s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .store-btn:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.08);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Fiverr Testimonials glassmorphic cards */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.08);
+        }
+
+        .quote-icon {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            opacity: 0.25;
+            margin-bottom: 0.8rem;
+        }
+
+        .review-text {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .reviewer-details h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .reviewer-details span {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .review-stars {
+            margin-left: auto;
+            color: #ffb703;
+            font-size: 0.75rem;
+            display: flex;
+            gap: 1.5px;
+        }
+
+        /* 📋 interactive cyberpunk Accordion FAQs */
+        .faq-container {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 240, 255, 0.25);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 1.8rem;
+            background: none;
+            border: none;
+            text-align: left;
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .faq-question i {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+            padding: 0 1.8rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer p {
+            padding-bottom: 1.4rem;
+        }
+
+        /* Academics Section */
+        .academics-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .academic-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .edu-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .edu-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .edu-details h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-school {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .edu-gpa {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .edu-details p {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        /* Language dots trackers */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.4rem;
+        }
+
+        .language-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .lang-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .lang-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-dot.filled {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 6px var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 3.5rem;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        .contact-card-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-card-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(6px);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.05);
+        }
+
+        .contact-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            color: var(--accent-cyan);
+            transition: 0.3s;
+        }
+
+        .contact-card-item:hover .contact-card-icon {
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            box-shadow: var(--glow-shadow);
+        }
+
+        .contact-card-details h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.1rem;
+        }
+
+        .contact-card-details p {
+            color: var(--text-primary);
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-cyber-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .social-cyber-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Deep solid dark gray contact form input controls */
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2.5rem 2.5rem 1.8rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-control {
+            background: #090b10 !important;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.1rem 1.3rem;
+            border-radius: 14px;
+            color: var(--text-primary);
+            width: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 1rem;
+            background: rgba(0, 240, 255, 0.12);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 12px;
+            padding: 1rem;
+            color: var(--accent-cyan);
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin: 0 12px 12px 12px;
+            background: #030407;
+            border-radius: 0 0 12px 12px;
+        }
+
+        footer p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* 📱 Responsive Mobile Adjustments */
+        @media (max-width: 950px) {
+            .cyber-frame { border-width: 8px; }
+            nav { top: 8px; left: 8px; right: 8px; }
+            .container { padding: 0 2rem; }
+
+            .hero { padding-top: 120px; }
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-btns { justify-content: center; }
+
+            .about-grid,
+            .academics-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .timeline::before { left: 24px; }
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 54px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            .timeline-dot { left: 24px; }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+            }
+
+            .menu-toggle-btn { display: flex; }
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 82px;
+                left: 12px;
+                right: 12px;
+                background: rgba(5, 6, 9, 0.98);
+                backdrop-filter: blur(25px);
+                padding: 2.2rem;
+                gap: 1.6rem;
+                border: 1px solid var(--card-border);
+                border-radius: 20px;
+                transform: translateY(-160%);
+                opacity: 0;
+                transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+                pointer-events: none;
+                z-index: 999;
+                text-align: center;
+            }
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title { font-size: 2.2rem; margin-bottom: 2rem; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 0.95rem; }
+            .btn { width: 100%; }
+            .hero-btns { flex-direction: column; gap: 0.8rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr !important; }
+            .about-grid, .academics-grid, .contact-grid { gap: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🌌 persistent cyber structure overlays -->
+    <div class="cyber-frame"></div>
+    <div class="grid-overlay"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Custom Cursor elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Sticky Futuristic Nav bar -->
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">&lt; AWAIS <span>/&gt;</span></a>
+            <div style="display: flex; align-items: center; gap: 1.2rem;">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">home</a></li>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#skills">toolkit</a></li>
+                    <li><a href="#projects">portfolio</a></li>
+                    <li><a href="#reviews">reviews</a></li>
+                    <li><a href="#experience">journey</a></li>
+                    <li><a href="#faqs">faqs</a></li>
+                    <li><a href="#contact">contact</a></li>
+                </ul>
+                <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🌌 Hero Section -->
+    <section id="home" class="hero">
+        <div class="ambient-glow" style="top: 10%; left: 5%;"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="pulse-badge">
+                    <span class="pulse-dot"></span> Available for freelance &amp; contract
+                </div>
+                <h1>Muhammad Awais<br><span class="text-outline">Senior Flutter Engineer</span></h1>
+                <h3>
+                    <span class="typewriter-role"></span><span class="typewriter-cursor">|</span>
+                </h3>
+                <p>Architecting high-performance cross-platform mobile systems used by 100K+ users worldwide. Specializing in Clean Architecture, state persistence layers, optimized rendering pipelines, and state-of-the-art LLM integrations.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Hire Me <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="btn btn-outline" id="resumeBtn">Download CV <i class="fas fa-file-alt"></i></a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <!-- Outer wrapper: floating tags are positioned here so they escape overflow:hidden -->
+                <div class="viewfinder-outer">
+
+                    <!-- Floating glass tags (outside the clipped container) -->
+                    <div class="floating-tag tag-1">
+                        <i class="fa-solid fa-bolt" style="color:#00f0ff;"></i> Flutter
+                    </div>
+                    <div class="floating-tag tag-2">
+                        <i class="fa-solid fa-layer-group" style="color:#7000ff;"></i> Clean Arch
+                    </div>
+                    <div class="floating-tag tag-3">
+                        <i class="fa-solid fa-fire" style="color:#ffb703;"></i> Firebase
+                    </div>
+                    <div class="floating-tag tag-4">
+                        <i class="fa-solid fa-brain" style="color:#a855f7;"></i> AI Integrations
+                    </div>
+
+                    <!-- Inner clipped container: only the photo & HUD overlays live here -->
+                    <div class="viewfinder-container">
+                        <div class="corner-bracket top-left"></div>
+                        <div class="corner-bracket top-right"></div>
+                        <div class="corner-bracket bottom-left"></div>
+                        <div class="corner-bracket bottom-right"></div>
+
+                        <div class="viewfinder-meta">
+                            <div class="rec-indicator">
+                                <span class="rec-dot"></span> ● REC
+                            </div>
+                            <div>RAW 4K 120fps</div>
+                        </div>
+
+                        <img src="profile.jpeg" alt="Muhammad Awais" class="viewfinder-image">
+
+                        <div class="viewfinder-bottom">
+                            <div>TC <span id="frame-counter">00:00:00:00</span></div>
+                            <div>ISO 400</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 About & Story Section -->
+    <section id="about">
+        <div class="ambient-glow" style="bottom: 5%; right: 5%;"></div>
+        <div class="container">
+            <span class="section-tag">// Behind The Code</span>
+            <h2 class="section-title">The Story <span class="text-outline">Behind The Code</span></h2>
+            
+            <div class="about-grid">
+                <div class="story-box">
+                    <p style="margin-bottom: 1.2rem;">I am a highly passionate <strong>Senior Flutter Developer</strong> with <strong>4+ years of professional engineering experience</strong>. My journey revolves around designing scalable, production-grade mobile codebases that maintain a <strong>99.9% crash-free session rate</strong>.</p>
+                    <p>I focus heavily on bridging high-fidelity visual UI designs with stable, testable backends. Whether implementing clean Domain-Driven patterns, offloading calculations with background thread Isolates, or deploying AI integrations, I thrive on writing elegant solutions to complex puzzles.</p>
+                </div>
+                <div class="stats-grid">
+                    <!-- Stat 1 -->
+                    <div class="stat-card">
+                        <i class="fa-solid fa-briefcase stat-icon"></i>
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="stat-card">
+                        <i class="fa-solid fa-code stat-icon"></i>
+                        <div class="stat-number">55+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="stat-card">
+                        <i class="fa-solid fa-cloud-arrow-down stat-icon"></i>
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">App Downloads</div>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="stat-card">
+                        <i class="fa-solid fa-heart-pulse stat-icon"></i>
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Crash-free Sessions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Toolkit / Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <span class="section-tag">// Stack &amp; Tools</span>
+            <h2 class="section-title">Skills &amp; <span class="text-outline">Expertise</span></h2>
+            
+            <div class="skills-grid">
+                <!-- Group 1: Frontend -->
+                <div class="skill-group-card">
+                    <div class="skill-group-header">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>Frontend Engine</h3>
+                    </div>
+                    <div class="skill-progress-list">
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Flutter SDK</span><span>95%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Dart Language</span><span>95%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Native Android / iOS</span><span>75%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 2: State Mgmt -->
+                <div class="skill-group-card">
+                    <div class="skill-group-header">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>Architecture</h3>
+                    </div>
+                    <div class="skill-progress-list">
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Clean Architecture</span><span>90%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>BLoC Pattern</span><span>88%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="88%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>GetX State Mgmt</span><span>92%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="92%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 3: Backend & Clouds -->
+                <div class="skill-group-card">
+                    <div class="skill-group-header">
+                        <i class="fa-solid fa-cloud"></i>
+                        <h3>Backend &amp; Cloud</h3>
+                    </div>
+                    <div class="skill-progress-list">
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Firebase Services</span><span>90%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Supabase BaaS</span><span>85%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>REST APIs &amp; MySQL</span><span>90%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 4: AI & Utilities -->
+                <div class="skill-group-card">
+                    <div class="skill-group-header">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>AI &amp; Utilities</h3>
+                    </div>
+                    <div class="skill-progress-list">
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>AI &amp; LLM Integrations</span><span>85%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Git Version Control</span><span>95%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
+                        </div>
+                        <div class="skill-progress-item">
+                            <div class="skill-name-percent"><span>Figma UI/UX Design</span><span>80%</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Mobile Mockups Projects Grid -->
+    <section id="projects">
+        <div class="container">
+            <span class="section-tag">// Showcased Apps</span>
+            <h2 class="section-title">My Featured <span class="text-outline">Work</span></h2>
+            
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">all</button>
+                <button class="filter-btn" data-filter="utility">utility</button>
+                <button class="filter-btn" data-filter="services">services</button>
+                <button class="filter-btn" data-filter="vendor">vendor</button>
+                <button class="filter-btn" data-filter="health">health</button>
+                <button class="filter-btn" data-filter="social">social</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- App 1: GetinDevice -->
+                <div class="phone-mockup" data-category="utility">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/IAWTHeDB-VIcSfEhGTG4AI39ph8sCILqVsFd65v04wJwV39izULvkb3kecBHTpOQQZZIO258SqwdEXR0DYSMRjA" alt="GetinDevice">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>GetinDevice</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Utility</span>
+                                <span class="phone-tag">100K+ Installs</span>
+                            </div>
+                            <p>Premium video and media downloader system featuring dynamic API parsing and fast integrated multi-thread download management.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.layyahdevs.getindevice" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 2: Tamam Customer -->
+                <div class="phone-mockup" data-category="services">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/I_zIjdlPppVWO_5a2TSEGx-o8kv0StZVH_klkZIVVEsMtR1oR0rqJQXk72yf0PcOUFU" alt="Tamam Customer">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>Tamam</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Services</span>
+                                <span class="phone-tag">Marketplace</span>
+                            </div>
+                            <p>On-demand home services booking ecosystem. Integrated live map provider tracking, payment gateways, and real-time chat.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.tamam.customer" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/tamam-services-on-demand/id6740270481" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 3: Tamam Vendor -->
+                <div class="phone-mockup" data-category="vendor">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/kikeK652BASCUv-I0v3WKFquLbCcU_1gT__MYmj83f0p6I1YHXQOYOfeNtZPnM5n8A" alt="Tamam Vendor">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>Tamam Partner</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Vendor</span>
+                                <span class="phone-tag">Provider Panel</span>
+                            </div>
+                            <p>Vendor administration control dashboard for providers to manage schedules, track incoming orders, and review earnings.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.tamam.vendor" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/tamam-vendor/id6740737001" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 4: DocDoc Customer -->
+                <div class="phone-mockup" data-category="health">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/z9TsNJ7KSG3Fj1-asqilMbl6wLVnXKP0545VwwKFM1nFH0UoRhso6EDtf-_7i7sbHsEPKlYA-ocvAU9XddqrUg" alt="DocDoc">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>DocDoc</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Health</span>
+                                <span class="phone-tag">Patient Booking</span>
+                            </div>
+                            <p>Advanced dental healthcare app providing doctor searching, digital treatment appointment booking, and historic e-medical record reviews.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.customer" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/docdoc-dental-care/id6743958550" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 5: DocDoc Vendor -->
+                <div class="phone-mockup" data-category="vendor">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/bi8_LfG1QfUt-wvj-NpSI283qSlIjXmq8Sx8aZLaL1n61OUHdiQz9lBX4Bi7O0DDKumcgsvxDrT6PqbsgVyY" alt="DocDoc Partner">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>DocDoc Partner</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Clinic Panel</span>
+                                <span class="phone-tag">Vendor</span>
+                            </div>
+                            <p>Clinician schedule manager panel for dentists allowing secure patient query approvals, chat, and database tracking.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.docdoc.vendor" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/docdoc-partner/id6744539826" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 6: Logi -->
+                <div class="phone-mockup" data-category="utility">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/lDITcQfA9M2qQ2exs8NZDWlMtJv7J7Ekcn_6VclNh0iP2OnfwYJWxWUTzqQmE7lNGu0" alt="Logi">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>Logi - Deliver Tap</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Utility</span>
+                                <span class="phone-tag">Logistics</span>
+                            </div>
+                            <p>On-demand courier delivery platform. Incorporates advanced live driver tracking, Mapbox routes, and automated status channels.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.logicorp" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/us/app/logi-deliver-with-a-tap/id6478827419" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 7: Blaxity -->
+                <div class="phone-mockup" data-category="social">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/pvhTrgDwKyu5V81_YAmeBoGAKPqInRyDBUnYwyPeIaxyVwSffpXIDlHUW6VDtOJQJQ" alt="Blaxity">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>Blaxity</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Social</span>
+                                <span class="phone-tag">Couples</span>
+                            </div>
+                            <p>A sophisticated social matching and couples discovery application designed with custom matchmaking indexes and secure local DB caching.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.appp.blaxity" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                            <a href="https://apps.apple.com/app/blaxity-dating-meet-couples/id1485603417" target="_blank" class="store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 8: Hooray -->
+                <div class="phone-mockup" data-category="utility">
+                    <div class="phone-island"></div>
+                    <div class="phone-screen">
+                        <img src="https://play-lh.googleusercontent.com/8Ybg9GSDD2Gvibfy16MndTqqp7nt9irpBQpVkcOOJN997T3Z9D4LcOrW0te2GDpA7c0" alt="Hooray">
+                    </div>
+                    <div class="phone-content">
+                        <div>
+                            <h3>Hooray</h3>
+                            <div class="phone-tags">
+                                <span class="phone-tag">Utility</span>
+                                <span class="phone-tag">Gamified</span>
+                            </div>
+                            <p>Gamified local engagement and customer loyalty portal featuring rotating prize wheels, raffle codes, and dynamic reward mechanics.</p>
+                        </div>
+                        <div class="phone-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.codergize.hooray" target="_blank" class="store-btn"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Reviews Section -->
+    <section id="reviews">
+        <div class="container">
+            <span class="section-tag">// Client Testimonials</span>
+            <h2 class="section-title">Client <span class="text-outline">Reviews</span></h2>
+            
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div>
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="review-text">"Excellent experience working with this seller. Understood requirements perfectly and delivered a flawless product ahead of time!"</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">AS</div>
+                        <div class="reviewer-details">
+                            <h4>asifdev66</h4>
+                            <span>Verified Buyer — Pakistan</span>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div>
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="review-text">"I recently hired this seller to develop a webview app... Very highly recommended! Top-tier communication and technical skills."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">AS</div>
+                        <div class="reviewer-details">
+                            <h4>asifdev66</h4>
+                            <span>Verified Buyer — Pakistan</span>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div>
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="review-text">"Thanks man, great skills I will be back for more projects. Clean code, fast delivery, and very professional behavior."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">AG</div>
+                        <div class="reviewer-details">
+                            <h4>alexgoogle229</h4>
+                            <span>Verified Buyer — Vietnam</span>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3.5rem;">
+                <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="btn btn-outline">View More Reviews on Fiverr <i class="fas fa-external-link-alt" style="margin-left: 0.5rem;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Frequently Asked Questions (Interactive Accordion) -->
+    <section id="faqs">
+        <div class="container">
+            <span class="section-tag">// FAQ Index</span>
+            <h2 class="section-title">Frequently Asked <span class="text-outline">Questions</span></h2>
+            
+            <div class="faq-container">
+                <!-- Q1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do you guarantee a 99.9% crash-free session rate?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>By adhering to rigorous production standards: clean architecture layer separations, reactive state handlers (GetX/Bloc) that automatically tear down resources, defensive programming with Null Safety, and integrating continuous crash monitoring (Firebase Crashlytics & Sentry) to trace and patch any anomalies immediately before they impact production.</p>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can you migrate our existing native iOS/Android or React Native app to Flutter?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! I specialize in full-scale app migrations. My process involves analyzing your existing app's feature matrix, reconstructing the visual designs into reusable Flutter widgets, establishing local databases (Hive/Sqflite), and writing custom Platform Channels (Kotlin/Swift) to bind with any native hardware features if necessary, ensuring a smooth transition without losing user data.</p>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is your approach to app performance optimization?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I focus on three key pillars: render efficiency (const constructors, removing redundant rebuild cycles, lazy loading list items), memory tracking (eliminating memory leaks by closing controllers/streams, optimizing high-resolution assets), and background isolate offloading (running complex JSON parsing and heavy calculations outside the main UI thread to guarantee 60/120fps operations).</p>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do we collaborate, track progress, and communicate?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Transparency is my priority. We will use tools like Slack/Discord for daily touchpoints, Trello/Jira for sprint boards, and Figma for design collaboration. I push code to GitHub regularly and provide weekly, fully interactive TestFlight and Google Play Console Internal Test builds so you can test features physically on real devices at every stage.</p>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you sign NDAs (Non-Disclosure Agreements)?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. Intellectual property security is crucial for all start-ups and enterprise systems. I will gladly sign a comprehensive Non-Disclosure Agreement before discussing any architecture plans, proprietary API keys, or custom database models to keep your intellectual assets fully protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Experience / Work Journey -->
+    <section id="experience">
+        <div class="container">
+            <span class="section-tag">// Professional Milestones</span>
+            <h2 class="section-title">Work <span class="text-outline">Journey</span></h2>
+            
+            <div class="timeline">
+                <!-- Node 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date-badge">2024 - Present</span>
+                        <h3 class="timeline-title">Senior Software Engineer</h3>
+                        <div class="timeline-company">CoderGize — Lebanon (Remote)</div>
+                        <p>Leading Flutter architecture for global apps. Custom persistent layers, continuous integration (CI/CD), frame optimization, and scaling apps to handle thousands of concurrent transactions.</p>
+                    </div>
+                </div>
+                <!-- Node 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date-badge">2022 - 2023</span>
+                        <h3 class="timeline-title">Flutter Mobile Developer</h3>
+                        <div class="timeline-company">Skyline Coderz — Pakistan (Hybrid)</div>
+                        <p>Shipped 10+ scalable cross-platform apps directly to the Google Play Store and iOS App Store. Expert RESTful API bindings, payment gateway integration, and Firebase setup.</p>
+                    </div>
+                </div>
+                <!-- Node 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date-badge">2021 - 2022</span>
+                        <h3 class="timeline-title">Flutter Developer</h3>
+                        <div class="timeline-company">MicroProgrammers — Onsite</div>
+                        <p>Began my specialized Dart journey coding reusable widget libraries, implementing local databases (Sqflite), and managing simple REST request layouts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Academic & Languages Section -->
+    <section id="academics">
+        <div class="container">
+            <div class="academics-grid">
+                <!-- Academic Card -->
+                <div class="academic-card">
+                    <span class="section-tag" style="text-align: left;">// Academics</span>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Academic <span class="text-outline">Background</span></h2>
+                    
+                    <div class="edu-item">
+                        <div class="edu-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="edu-details">
+                            <h4>Associate Degree Program (ADP)</h4>
+                            <div class="edu-school">Computer Science | Layyah Pakistan</div>
+                            <div class="edu-gpa">GPA: 3.2 / 4.0</div>
+                            <p>Specialized courses in Data Structures, OOP, Database Management Systems, and Object-Oriented Analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages Tracker card -->
+                <div class="academic-card">
+                    <span class="section-tag" style="text-align: left;">// Linguistic Skills</span>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2.5rem;">Languages <span class="text-outline">Proficiency</span></h2>
+                    
+                    <div class="language-list">
+                        <!-- Lang 1 -->
+                        <div class="language-item">
+                            <span class="lang-name">Urdu</span>
+                            <div class="lang-dots">
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- Lang 2 -->
+                        <div class="language-item">
+                            <span class="lang-name">English</span>
+                            <div class="lang-dots">
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot"></span>
+                            </div>
+                        </div>
+                        <!-- Lang 3 -->
+                        <div class="language-item">
+                            <span class="lang-name">Punjabi</span>
+                            <div class="lang-dots">
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                                <span class="lang-dot filled"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌌 Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <span class="section-tag">// Hire Me</span>
+            <h2 class="section-title">Let's Create <span class="text-outline">Something Epic</span></h2>
+            
+            <div class="contact-grid">
+                <!-- Info details -->
+                <div class="contact-info-list">
+                    <h3 style="font-family:'Space Grotesk', sans-serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 0.5rem;">Got a vision?<br>Let's map the architecture.</h3>
+                    <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Feel free to reach out directly. I am active and available for freelance, contract, or full-time roles.</p>
+                    
+                    <a href="mailto:awais.mirani148@gmail.com" class="contact-card-item">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-card-details">
+                            <h4>Email</h4>
+                            <p>awais.mirani148@gmail.com</p>
+                        </div>
+                    </a>
+                    
+                    <a href="tel:+923084316822" class="contact-card-item">
+                        <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-card-details">
+                            <h4>Phone / Whatsapp</h4>
+                            <p>+92 308 431 6822</p>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-card-item" style="cursor: default;">
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-card-details">
+                            <h4>Location</h4>
+                            <p>Layyah, Punjab, Pakistan (Remote Ready)</p>
+                        </div>
+                    </div>
+
+                    <!-- Social row -->
+                    <div class="social-row">
+                        <a href="https://linkedin.com/in/muhammad-awais-b11645286" target="_blank" class="social-cyber-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="https://github.com/awaismirani" target="_blank" class="social-cyber-btn"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.fiverr.com/awais_khan07" target="_blank" class="social-cyber-btn"><i class="fas fa-star"></i> Fiverr</a>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group" style="margin-bottom: 1.2rem;">
+                            <input type="text" name="name" class="form-control" placeholder="YOUR FULL NAME" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.2rem;">
+                            <input type="email" name="email" class="form-control" placeholder="YOUR EMAIL ADDRESS" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <textarea name="message" class="form-control" placeholder="YOUR PROJECT DETAILS AND VISION..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; border-radius: 14px;">Send Message <i class="fas fa-paper-plane" style="margin-left:0.4rem;"></i></button>
+                        <div id="formSuccess" class="success-message">
+                            <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Message transmitted successfully! I will reply within 24h.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 MUHAMMAD AWAIS &mdash; SENIOR FLUTTER DEVELOPER. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#home" class="back-to-top" id="backToTop" style="position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(5,6,9,0.85); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); text-decoration: none; z-index: 100; box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); opacity: 0; pointer-events: none; transition: all 0.3s;"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts: GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Custom Cursor Logic
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', e => {
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            
+            outline.animate({
+                left: `${e.clientX}px`,
+                top: `${e.clientY}px`
+            }, { duration: 180, fill: "forwards" });
+        });
+
+        // Hover enlargements for cursor outline
+        document.querySelectorAll('a, button, input, textarea, .faq-question').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                outline.style.width = '55px';
+                outline.style.height = '55px';
+                outline.style.backgroundColor = 'rgba(0, 240, 255, 0.05)';
+            });
+            el.addEventListener('mouseleave', () => {
+                outline.style.width = '40px';
+                outline.style.height = '40px';
+                outline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // 📝 Viewfinder Frame Counter simulation
+        let frameCount = 0;
+        const frameCounterEl = document.getElementById('frame-counter');
+        if (frameCounterEl) {
+            setInterval(() => {
+                frameCount++;
+                let hours = String(Math.floor(frameCount / 108000) % 24).padStart(2, '0');
+                let minutes = String(Math.floor(frameCount / 4500) % 60).padStart(2, '0');
+                let seconds = String(Math.floor(frameCount / 75) % 60).padStart(2, '0');
+                let frames = String(frameCount % 75).padStart(2, '0');
+                frameCounterEl.innerText = `${hours}:${minutes}:${seconds}:${frames}`;
+            }, 13.33); // 75fps simulation
+        }
+
+        // 📝 Typewriter subheading effect
+        const roles = [
+            "SENIOR FLUTTER ENGINEER",
+            "CLEAN ARCHITECTURE EXPERT",
+            "APP PERFORMANCE GURU",
+            "AI & CLOUD INTEGRATION SPECIALIST"
+        ];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const typewriterEl = document.querySelector('.typewriter-role');
+
+        function type() {
+            const currentRole = roles[roleIdx];
+            if (isDeleting) {
+                typewriterEl.innerText = currentRole.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typewriterEl.innerText = currentRole.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIdx === currentRole.length) {
+                typeSpeed = 2200; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                typeSpeed = 400; // Pause before typing next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        window.addEventListener('DOMContentLoaded', () => setTimeout(type, 1000));
+
+        // Canvas Particle Engine
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height;
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 10;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedY = -(Math.random() * 0.8 + 0.2);
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // Initialize particles
+        const particleCount = 80;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // GSAP ScrollTrigger Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate progress tracks on entry
+        gsap.utils.toArray('.skill-group-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%"
+                },
+                opacity: 0,
+                y: 35,
+                duration: 0.6,
+                onComplete: () => {
+                    card.querySelectorAll('.skill-fill').forEach(fill => {
+                        const targetWidth = fill.getAttribute('data-width');
+                        fill.style.width = targetWidth;
+                    });
+                }
+            });
+        });
+
+        // Milestones, cards, stats animations
+        gsap.utils.toArray('.stat-card, .timeline-content, .phone-mockup, .review-card, .faq-item, .contact-card-item').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%"
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.5
+            });
+        });
+
+        // Phone Showcase Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const phoneItems = document.querySelectorAll('.phone-mockup');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                phoneItems.forEach(item => {
+                    const matches = filter === 'all' || item.getAttribute('data-category') === filter;
+                    if (matches) {
+                        item.style.display = 'flex';
+                        gsap.fromTo(item, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4 });
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // FAQ Accordion mechanism
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const icon = btn.querySelector('i');
+                const isOpen = item.classList.contains('active');
+
+                // Close other opened FAQs
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    el.classList.remove('active');
+                    el.querySelector('.faq-answer').style.maxHeight = '0px';
+                    el.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+                });
+
+                if (!isOpen) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        // Scroll spy header active highlight & sticky transparent background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 40) {
+                nav.style.background = 'rgba(5, 6, 9, 0.95)';
+                nav.style.borderBottomColor = 'rgba(0, 240, 255, 0.2)';
+            } else {
+                nav.style.background = 'rgba(5, 6, 9, 0.7)';
+                nav.style.borderBottomColor = 'var(--card-border)';
+            }
+
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+
+            // Scroll Spy
+            let currentSec = 'home';
+            document.querySelectorAll('section').forEach(sec => {
+                const top = sec.offsetTop;
+                if (window.scrollY >= (top - 160)) {
+                    currentSec = sec.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSec}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile hamburguer overlay toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const isOpen = navLinks.classList.contains('open');
+            menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // FormSubmit Contact Post integration
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button');
+            const origText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TRANSMITTING...';
+            btn.disabled = true;
+
+            fetch("https://formsubmit.co/ajax/awais.mirani148@gmail.com", {
+                method: "POST",
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                btn.innerHTML = origText;
+                btn.disabled = false;
+                if (data.success === "true" || data.success === true) {
+                    form.reset();
+                    document.getElementById('formSuccess').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('formSuccess').style.display = 'none';
+                    }, 5000);
+                } else {
+                    alert('Error sending message. Please try again.');
+                }
+            })
+            .catch(() => {
+                btn.innerHTML = origText;
+                btn.disabled = false;
+                alert('Connection failure. Please check network.');
+            });
+        });
+
+        document.getElementById('resumeBtn').addEventListener('click', e => {
+            e.preventDefault();
+            alert('📄 Resume is processed and available on direct request. Contact me below!');
+        });
+    </script>
+</body>
+
+</html>
